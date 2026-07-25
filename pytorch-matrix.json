@@ -1,0 +1,219 @@
+{
+  "include": [
+    {
+      "tag": "torch2.3.1-py3.10-cpu",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.3.1",
+      "torchaudio": "2.3.1",
+      "torchvision": "0.18.1",
+      "torchcodec": "none",
+      "triton": "none",
+      "cuda_version": "none",
+      "cuda_tag": "cpu"
+    },
+    {
+      "tag": "torch2.5.1-py3.10-cpu",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.5.1",
+      "torchaudio": "2.5.1",
+      "torchvision": "0.20.1",
+      "torchcodec": "0.1.1",
+      "triton": "none",
+      "cuda_version": "none",
+      "cuda_tag": "cpu"
+    },
+    {
+      "tag": "torch2.6.0-py3.11-cpu",
+      "python": "3.11",
+      "numpy": "1.26.4",
+      "torch": "2.6.0",
+      "torchaudio": "2.6.0",
+      "torchvision": "0.21.0",
+      "torchcodec": "0.2.1",
+      "triton": "none",
+      "cuda_version": "none",
+      "cuda_tag": "cpu"
+    },
+    {
+      "tag": "torch2.7.1-py3.10-cpu",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.7.1",
+      "torchaudio": "2.7.1",
+      "torchvision": "0.22.1",
+      "torchcodec": "0.5",
+      "triton": "none",
+      "cuda_version": "none",
+      "cuda_tag": "cpu"
+    },
+    {
+      "tag": "torch2.8.0-py3.10-cpu",
+      "python": "3.10",
+      "numpy": "2.2.6",
+      "torch": "2.8.0",
+      "torchaudio": "2.8.0",
+      "torchvision": "0.23.0",
+      "torchcodec": "0.7.0",
+      "triton": "none",
+      "cuda_version": "none",
+      "cuda_tag": "cpu"
+    },
+    {
+      "tag": "torch2.0.1-py3.10-cu118",
+      "python": "3.10",
+      "numpy": "1.23.5",
+      "torch": "2.0.1",
+      "torchaudio": "2.0.2",
+      "torchvision": "0.15.2",
+      "torchcodec": "none",
+      "triton": "2.0.0",
+      "cuda_version": "11.8",
+      "cuda_tag": "cu118"
+    },
+    {
+      "tag": "torch2.1.0-py3.10-cu118",
+      "python": "3.10",
+      "numpy": "1.26.1",
+      "torch": "2.1.0",
+      "torchaudio": "2.1.0",
+      "torchvision": "0.16.0",
+      "torchcodec": "none",
+      "triton": "2.1.0",
+      "cuda_version": "11.8",
+      "cuda_tag": "cu118"
+    },
+    {
+      "tag": "torch2.3.1-py3.10-cu121",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.3.1",
+      "torchaudio": "2.3.1",
+      "torchvision": "0.18.1",
+      "torchcodec": "none",
+      "triton": "2.3.1",
+      "cuda_version": "12.1",
+      "cuda_tag": "cu121"
+    },
+    {
+      "tag": "torch2.4.0-py3.10-cu121",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.4.0",
+      "torchaudio": "2.4.0",
+      "torchvision": "0.19.0",
+      "torchcodec": "none",
+      "triton": "3.0.0",
+      "cuda_version": "12.1",
+      "cuda_tag": "cu121"
+    },
+    {
+      "tag": "torch2.4.1-py3.10-cu121",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.4.1",
+      "torchaudio": "2.4.1",
+      "torchvision": "0.19.1",
+      "torchcodec": "none",
+      "triton": "3.0.0",
+      "cuda_version": "12.1",
+      "cuda_tag": "cu121"
+    },
+    {
+      "tag": "torch2.5.1-py3.10-cu121",
+      "python": "3.10",
+      "numpy": "1.23.5",
+      "torch": "2.5.1",
+      "torchaudio": "2.5.1",
+      "torchvision": "0.20.1",
+      "torchcodec": "0.1.1",
+      "triton": "3.1.0",
+      "cuda_version": "12.1",
+      "cuda_tag": "cu121"
+    },
+    {
+      "tag": "torch2.5.1-py3.10-cu124",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.5.1",
+      "torchaudio": "2.5.1",
+      "torchvision": "0.20.1",
+      "torchcodec": "0.1.1",
+      "triton": "3.1.0",
+      "cuda_version": "12.4",
+      "cuda_tag": "cu124"
+    },
+    {
+      "tag": "torch2.6.0-py3.10-cu124",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.6.0",
+      "torchaudio": "2.6.0",
+      "torchvision": "0.21.0",
+      "torchcodec": "0.2.1",
+      "triton": "3.2.0",
+      "cuda_version": "12.4",
+      "cuda_tag": "cu124"
+    },
+    {
+      "tag": "torch2.7.1-py3.10-cu126",
+      "python": "3.10",
+      "numpy": "1.26.4",
+      "torch": "2.7.1",
+      "torchaudio": "2.7.1",
+      "torchvision": "0.22.1",
+      "torchcodec": "0.5",
+      "triton": "3.3.1",
+      "cuda_version": "12.6",
+      "cuda_tag": "cu126"
+    },
+    {
+      "tag": "torch2.8.0-py3.10-cu128",
+      "python": "3.10",
+      "numpy": "2.2.6",
+      "torch": "2.8.0",
+      "torchaudio": "2.8.0",
+      "torchvision": "0.23.0",
+      "torchcodec": "0.7.0",
+      "triton": "3.4.0",
+      "cuda_version": "12.8",
+      "cuda_tag": "cu128"
+    },
+    {
+      "tag": "torch2.9.0-py3.12-cu128",
+      "python": "3.12",
+      "numpy": "2.0.2",
+      "torch": "2.9.0",
+      "torchaudio": "2.9.0",
+      "torchvision": "0.24.0",
+      "torchcodec": "0.8.0",
+      "triton": "3.5.0",
+      "cuda_version": "12.8",
+      "cuda_tag": "cu128"
+    },
+    {
+      "tag": "torch2.10.0-py3.11-cu128",
+      "python": "3.11",
+      "numpy": "2.2.6",
+      "torch": "2.10.0",
+      "torchaudio": "2.10.0",
+      "torchvision": "0.25.0",
+      "torchcodec": "0.10.0",
+      "triton": "3.6.0",
+      "cuda_version": "12.8",
+      "cuda_tag": "cu128"
+    }
+  ],
+  "platforms": {
+    "default": [
+      "linux/amd64"
+    ],
+    "base-overrides": {
+      "torch2.3.1-py3.10-cpu": [
+        "linux/amd64",
+        "linux/arm64"
+      ]
+    }
+  }
+}

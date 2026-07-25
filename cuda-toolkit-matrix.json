@@ -1,0 +1,16 @@
+{
+  "include": [
+    {
+      "tag": "12.1.1-ubuntu22.04",
+      "source": "nvidia/cuda:12.1.1-devel-ubuntu22.04",
+      "cuda_version": "12.1",
+      "toolkit_source": "/usr/local/cuda-12.1"
+    },
+    {
+      "tag": "12.4.1-ubuntu22.04",
+      "source": "nvidia/cuda:12.4.1-devel-ubuntu22.04",
+      "cuda_version": "12.4",
+      "toolkit_source": "/usr/local/cuda-12.4"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+name: Publish PyTorch Runtime Bases
+
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: Exact PyTorch image tag to publish, or all
+        required: true
+        default: all
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_BASE: ghcr.io/${{ github.repository_owner }}/runtime-base
+
+jobs:
+  matrix:
+    name: Resolve PyTorch images
+    runs-on: ubuntu-latest
+    outputs:
+      images: ${{ steps.matrix.outputs.images }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: matrix
+        env:
+          REQUESTED_IMAGE: ${{ inputs.image }}
+        run: |
+          if [[ "$REQUESTED_IMAGE" != "all" ]] \
+              && ! jq -e --arg tag "$REQUESTED_IMAGE" '.include[] | select(.tag == $tag)' pytorch-matrix.json >/dev/null; then
+            echo "Unknown PyTorch image tag: $REQUESTED_IMAGE" >&2
+            exit 64
+          fi
+          echo 'images={"include":'"$(jq -c --arg requested "$REQUESTED_IMAGE" '
+            .platforms as $platforms
+            | [.include[] as $entry
+                | $entry + {
+                    platforms: (($platforms["base-overrides"][$entry.tag]
+                      // $platforms.default) | join(","))
+                  }
+                | select($requested == "all" or .tag == $requested)]
+          ' pytorch-matrix.json)"'}' >> "$GITHUB_OUTPUT"
+
+  publish:
+    name: ${{ matrix.tag }}
+    needs: matrix
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.matrix.outputs.images) }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: runtime-base-${{ matrix.tag }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-qemu-action@v3
+        if: contains(matrix.platforms, 'arm64')
+      - uses: docker/setup-buildx-action@v3
+      - name: Publish PyTorch runtime base
+        run: make push-pytorch TAG="${{ matrix.tag }}" PUSH_IMAGE_BASE="$IMAGE_BASE" SHA_TAG="$GITHUB_SHA"

@@ -1,0 +1,31 @@
+name: Publish FFmpeg Foundation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  FFMPEG_IMAGE: ghcr.io/${{ github.repository_owner }}/ffmpeg
+
+jobs:
+  publish:
+    name: ffmpeg:6.1.6
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ffmpeg-6.1.6
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Publish FFmpeg foundation
+        run: make push-ffmpeg PUSH_FFMPEG_IMAGE="$FFMPEG_IMAGE" SHA_TAG="$GITHUB_SHA"

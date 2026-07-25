@@ -1,0 +1,60 @@
+name: Publish CUDA Toolkit Mirrors
+
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: Exact CUDA toolkit image tag to publish, or all
+        required: true
+        default: all
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  CUDA_TOOLKIT_IMAGE: ghcr.io/${{ github.repository_owner }}/cuda-toolkit
+
+jobs:
+  matrix:
+    name: Resolve CUDA toolkit images
+    runs-on: ubuntu-latest
+    outputs:
+      images: ${{ steps.matrix.outputs.images }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: matrix
+        env:
+          REQUESTED_IMAGE: ${{ inputs.image }}
+        run: |
+          if [[ "$REQUESTED_IMAGE" != "all" ]] \
+              && ! jq -e --arg tag "$REQUESTED_IMAGE" '.include[] | select(.tag == $tag)' cuda-toolkit-matrix.json >/dev/null; then
+            echo "Unknown CUDA toolkit image tag: $REQUESTED_IMAGE" >&2
+            exit 64
+          fi
+          echo 'images={"include":'"$(jq -c --arg requested "$REQUESTED_IMAGE" '
+            [.include[] | select($requested == "all" or .tag == $requested)]
+          ' cuda-toolkit-matrix.json)"'}' >> "$GITHUB_OUTPUT"
+
+  publish:
+    name: ${{ matrix.tag }}
+    needs: matrix
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.matrix.outputs.images) }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: cuda-toolkit-${{ matrix.tag }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-buildx-action@v3
+      - name: Copy upstream manifest to ModoForge tags
+        run: make push-cuda-toolkit TAG="${{ matrix.tag }}" PUSH_CUDA_TOOLKIT_IMAGE="$CUDA_TOOLKIT_IMAGE" SHA_TAG="$GITHUB_SHA"

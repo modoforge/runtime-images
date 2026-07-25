@@ -1,0 +1,82 @@
+{
+  "include": [
+    {
+      "tag": "torch2.0.1-py3.10-cu118-ffmpeg6.1.6",
+      "base_tag": "torch2.0.1-py3.10-cu118",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.1.0-py3.10-cu118-ffmpeg6.1.6",
+      "base_tag": "torch2.1.0-py3.10-cu118",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.3.1-py3.10-cpu-ffmpeg6.1.6",
+      "base_tag": "torch2.3.1-py3.10-cpu",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.3.1-py3.10-cu121-ffmpeg6.1.6",
+      "base_tag": "torch2.3.1-py3.10-cu121",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.4.1-py3.10-cu121-ffmpeg6.1.6",
+      "base_tag": "torch2.4.1-py3.10-cu121",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.5.1-py3.10-cpu-ffmpeg6.1.6",
+      "base_tag": "torch2.5.1-py3.10-cpu",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.5.1-py3.10-cu121-ffmpeg6.1.6",
+      "base_tag": "torch2.5.1-py3.10-cu121",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.5.1-py3.10-cu124-ffmpeg6.1.6",
+      "base_tag": "torch2.5.1-py3.10-cu124",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.6.0-py3.10-cu124-ffmpeg6.1.6",
+      "base_tag": "torch2.6.0-py3.10-cu124",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.6.0-py3.11-cpu-ffmpeg6.1.6",
+      "base_tag": "torch2.6.0-py3.11-cpu",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.8.0-py3.10-cpu-ffmpeg6.1.6",
+      "base_tag": "torch2.8.0-py3.10-cpu",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.8.0-py3.10-cu128-ffmpeg6.1.6",
+      "base_tag": "torch2.8.0-py3.10-cu128",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    },
+    {
+      "tag": "torch2.9.0-py3.12-cu128-ffmpeg6.1.6",
+      "base_tag": "torch2.9.0-py3.12-cu128",
+      "libsndfile_package_version": "1.2.0-1+deb12u1",
+      "libsndfile_version": "1.2.0"
+    }
+  ]
+}
