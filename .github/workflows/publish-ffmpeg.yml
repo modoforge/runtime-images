@@ -28,4 +28,6 @@ jobs:
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
       - name: Publish FFmpeg foundation
-        run: make push-ffmpeg PUSH_FFMPEG_IMAGE="$FFMPEG_IMAGE" SHA_TAG="$GITHUB_SHA"
+        env:
+          TZ: UTC
+        run: make push-ffmpeg PUSH_FFMPEG_IMAGE="$FFMPEG_IMAGE" DATE_TAG="$(git show -s --format=%cd --date=format-local:%Y%m%d "$GITHUB_SHA")"

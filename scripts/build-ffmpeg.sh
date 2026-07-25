@@ -7,7 +7,7 @@ IMAGE_BASE="${IMAGE_BASE:-ffmpeg}"
 TAG="6.1.6"
 PLATFORMS="${PLATFORMS:-linux/amd64}"
 PUSH=0
-SHA_TAG="${SHA_TAG:-}"
+DATE_TAG="${DATE_TAG:-}"
 DRY_RUN="${DRY_RUN:-0}"
 
 usage() {
@@ -18,7 +18,7 @@ Options:
   --image-base NAME  Image repository (default: ffmpeg).
   --platforms LIST   Target platforms (default: linux/amd64).
   --push             Push instead of loading into the local Docker store.
-  --sha-tag SHA      Also publish 6.1.6-SHA.
+  --date-tag DATE    Also publish 6.1.6-YYYYMMDD.
   -h, --help         Show this help.
 EOF
 }
@@ -28,7 +28,7 @@ while (($#)); do
     --image-base) IMAGE_BASE="${2:?--image-base requires a value}"; shift 2 ;;
     --platforms) PLATFORMS="${2:?--platforms requires a value}"; shift 2 ;;
     --push) PUSH=1; shift ;;
-    --sha-tag) SHA_TAG="${2:?--sha-tag requires a value}"; shift 2 ;;
+    --date-tag) DATE_TAG="${2:?--date-tag requires a value}"; shift 2 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $1" >&2; usage >&2; exit 64 ;;
   esac
@@ -46,8 +46,8 @@ elif [[ "$PLATFORMS" == *,* ]]; then
 fi
 
 tag_args=(--tag "${IMAGE_BASE}:${TAG}")
-if [[ -n "$SHA_TAG" ]]; then
-  tag_args+=(--tag "${IMAGE_BASE}:${TAG}-${SHA_TAG}")
+if [[ -n "$DATE_TAG" ]]; then
+  tag_args+=(--tag "${IMAGE_BASE}:${TAG}-${DATE_TAG}")
 fi
 
 command=(docker buildx build

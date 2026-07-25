@@ -47,7 +47,7 @@ make pytorch TAG=torch2.8.0-py3.10-cu128
 make ffmpeg
 make ffmpeg-pytorch TAG=torch2.8.0-py3.10-cu128-ffmpeg6.1.6
 make push-pytorch TAG=torch2.8.0-py3.10-cu128
-make push SHA_TAG="$(git rev-parse HEAD)"
+make push DATE_TAG="$(TZ=UTC git show -s --format=%cd --date=format-local:%Y%m%d HEAD)"
 ```
 
 Local Docker builds default to `linux/amd64` and load the result into the local
@@ -73,6 +73,9 @@ All four publishing workflows are manual-only (`workflow_dispatch`). Commits to
 Dockerfiles, scripts, catalogs, or workflows never publish an image. Those
 changes remain release candidates until a maintainer explicitly selects a Git
 ref in GitHub Actions and starts the corresponding image-family workflow.
+Each publish creates the stable version tag and a second tag suffixed with the
+selected commit's UTC date in `YYYYMMDD` format. Repeated publishes for the same
+version and commit date update those tags normally.
 
 PyTorch, FFmpeg-PyTorch, and CUDA toolkit workflows expand their catalog into
 one independently named job per published image tag, with isolated concurrency

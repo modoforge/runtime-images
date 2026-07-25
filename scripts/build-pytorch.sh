@@ -8,7 +8,7 @@ IMAGE_BASE="${IMAGE_BASE:-runtime-base}"
 REQUESTED_TAG="all"
 PLATFORMS="${PLATFORMS:-}"
 PUSH=0
-SHA_TAG="${SHA_TAG:-}"
+DATE_TAG="${DATE_TAG:-}"
 DRY_RUN="${DRY_RUN:-0}"
 
 usage() {
@@ -20,7 +20,7 @@ Options:
   --image-base NAME  Image repository (default: runtime-base).
   --platforms LIST   Override matrix platforms.
   --push             Push instead of loading into the local Docker store.
-  --sha-tag SHA      Also publish TAG-SHA.
+  --date-tag DATE    Also publish TAG-YYYYMMDD.
   -h, --help         Show this help.
 EOF
 }
@@ -31,7 +31,7 @@ while (($#)); do
     --image-base) IMAGE_BASE="${2:?--image-base requires a value}"; shift 2 ;;
     --platforms) PLATFORMS="${2:?--platforms requires a value}"; shift 2 ;;
     --push) PUSH=1; shift ;;
-    --sha-tag) SHA_TAG="${2:?--sha-tag requires a value}"; shift 2 ;;
+    --date-tag) DATE_TAG="${2:?--date-tag requires a value}"; shift 2 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "Unknown option: $1" >&2; usage >&2; exit 64 ;;
   esac
@@ -79,8 +79,8 @@ while IFS= read -r row; do
   fi
 
   tag_args=(--tag "${IMAGE_BASE}:${tag}")
-  if [[ -n "$SHA_TAG" ]]; then
-    tag_args+=(--tag "${IMAGE_BASE}:${tag}-${SHA_TAG}")
+  if [[ -n "$DATE_TAG" ]]; then
+    tag_args+=(--tag "${IMAGE_BASE}:${tag}-${DATE_TAG}")
   fi
 
   run docker buildx build \

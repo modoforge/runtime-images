@@ -65,4 +65,6 @@ jobs:
         if: contains(matrix.platforms, 'arm64')
       - uses: docker/setup-buildx-action@v3
       - name: Publish PyTorch runtime base
-        run: make push-pytorch TAG="${{ matrix.tag }}" PUSH_IMAGE_BASE="$IMAGE_BASE" SHA_TAG="$GITHUB_SHA"
+        env:
+          TZ: UTC
+        run: make push-pytorch TAG="${{ matrix.tag }}" PUSH_IMAGE_BASE="$IMAGE_BASE" DATE_TAG="$(git show -s --format=%cd --date=format-local:%Y%m%d "$GITHUB_SHA")"
